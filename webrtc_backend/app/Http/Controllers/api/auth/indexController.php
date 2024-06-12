@@ -46,7 +46,7 @@ class indexController extends BaseController
         $create = ClientModel::create($data);
 
         if ($create){
-            return parent::success("Kullanıcı Kayıt İşlemi Başarılı",[$create],201);
+            return parent::success("Kullanıcı Kayıt İşlemi Başarılı. Bilgilerinizle Giriş Yapabilirsiniz",[$create],201);
         }else{
             return parent::error("Kullanıcı kayıt işleminde hata oluştu",[]);
         }
