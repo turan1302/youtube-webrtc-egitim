@@ -32,7 +32,7 @@ class indexController extends BaseController
             ]);
 
         } else {
-            return parent::error("Kullanıcı Bilgileri Hatalı");
+            return parent::error("Kullanıcı Bilgileri Hatalı",[],401);
         }
 
     }
