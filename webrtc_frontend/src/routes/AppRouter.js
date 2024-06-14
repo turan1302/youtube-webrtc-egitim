@@ -3,6 +3,7 @@ import {Route, Routes} from "react-router-dom";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import Logout from "../pages/Logout";
 
 class AppRouter extends Component {
     render() {
@@ -11,6 +12,7 @@ class AppRouter extends Component {
                 <Route path={"/"} element={<Home/>}/>
                 <Route path={"/login"} element={<Login/>}/>
                 <Route path={"/register"} element={<Register/>}/>
+                <Route path={"/logout"} element={<Logout/>}/>
             </Routes>
         )
     }
