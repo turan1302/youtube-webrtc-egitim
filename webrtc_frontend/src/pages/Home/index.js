@@ -2,14 +2,17 @@ import {Component} from "react";
 import Header from "../../components/common/Header";
 import {inject, observer} from "mobx-react";
 import withRouter from "../../withRouter";
+import AuthLayout from "../../components/Layout/AuthLayout";
 
 class Home extends Component{
     render() {
       return (
        <>
-       <Header/>
+        <AuthLayout>
+            <Header/>
 
-           Anasayfa
+            Anasayfa
+        </AuthLayout>
        </>
       )
     }

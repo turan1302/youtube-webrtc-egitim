@@ -1,26 +1,19 @@
 import {Component} from "react";
-import {Navigate, Route, Routes} from "react-router-dom";
-import Home from "../pages/Home";
-import Login from "../pages/Login";
-import Register from "../pages/Register";
-import Logout from "../pages/Logout";
-import withRouter from "../withRouter";
 import {inject, observer} from "mobx-react";
-import RestClient from "../RestAPI/RestClient";
-import AppUrl from "../RestAPI/AppUrl";
-import AuthRouter from "./AuthRouter";
+import withRouter from "../../withRouter";
+import RestClient from "../../RestAPI/RestClient";
+import AppUrl from "../../RestAPI/AppUrl";
 
-class AppRouter extends Component {
+class AuthLayout extends Component{
 
     constructor(props) {
         super(props);
-
-        this.isLoggedIn();
     }
 
     isLoggedIn = async ()=>{
+        const {navigate} = this.props;
         this.props.AuthStore.getToken();
-        const token = (this.props.AuthStore.appState !== null) ? this.props.AuthStore.appState.user.access_token : null;
+        const token = (this.props.AuthStore.appState !== null) ? this.props.AuthStore.user.access_token : null;
 
         await RestClient.getRequest(AppUrl.check,{
             headers : {
@@ -30,6 +23,7 @@ class AppRouter extends Component {
             const result = res.data;
             if (result.isLoggedIn !== true){
                 this.props.AuthStore.removeToken();
+                navigate("/login");
             }else{
                 let userData = {
                     id: result.data.id,
@@ -49,20 +43,17 @@ class AppRouter extends Component {
         }).catch((err)=>{
             console.log(err);
             this.props.AuthStore.removeToken();
+            navigate("/login");
         })
     }
 
     render() {
-        const {isLoggedIn} = (this.props.AuthStore.appState !== null) ? this.props.AuthStore.appState : false;
-
         return (
-            <Routes>
-                <Route path={"/*"} element={(!isLoggedIn) ? <Navigate to={"/login"}/> : <AuthRouter/>}/>
-                <Route path={"/login"} element={(isLoggedIn) ? <Navigate to={"/"}/> : <Login/>}/>
-                <Route path={"/register"} element={(isLoggedIn) ? <Navigate to={"/"}/> : <Register/>}/>
-            </Routes>
+            <>
+                {this.props.children}
+            </>
         )
     }
 }
 
-export default withRouter(inject("AuthStore")(observer(AppRouter)));
+export default withRouter(inject("AuthStore")(observer(AuthLayout)));
