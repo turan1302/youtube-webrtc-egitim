@@ -1,13 +1,10 @@
 import {Component} from "react";
 import {Navigate, Route, Routes} from "react-router-dom";
 import Home from "../pages/Home";
-import Login from "../pages/Login";
-import Register from "../pages/Register";
 import Logout from "../pages/Logout";
 import withRouter from "../withRouter";
 import {inject, observer} from "mobx-react";
-import RestClient from "../RestAPI/RestClient";
-import AppUrl from "../RestAPI/AppUrl";
+import Video from "../pages/Video";
 
 class AuthRouter extends Component {
 
@@ -20,7 +17,9 @@ class AuthRouter extends Component {
         return (
             <Routes>
                 <Route path={"/"} element={<Home/>}/>
+                <Route path={"/video/:conn"} element={<Video/>}/>
                 <Route path={"/logout"} element={<Logout/>}/>
+                <Route path={"*"} element={<Navigate to={"/"}/>}/>
             </Routes>
         )
     }

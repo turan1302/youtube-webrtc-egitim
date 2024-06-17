@@ -1,9 +1,7 @@
 import {Component} from "react";
 import {Navigate, Route, Routes} from "react-router-dom";
-import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
-import Logout from "../pages/Logout";
 import withRouter from "../withRouter";
 import {inject, observer} from "mobx-react";
 import RestClient from "../RestAPI/RestClient";
@@ -60,6 +58,7 @@ class AppRouter extends Component {
                 <Route path={"/*"} element={(!isLoggedIn) ? <Navigate to={"/login"}/> : <AuthRouter/>}/>
                 <Route path={"/login"} element={(isLoggedIn) ? <Navigate to={"/"}/> : <Login/>}/>
                 <Route path={"/register"} element={(isLoggedIn) ? <Navigate to={"/"}/> : <Register/>}/>
+                <Route path={"*"} element={<Navigate to={"/"}/>}/>
             </Routes>
         )
     }

@@ -13,3 +13,11 @@ Route::group(['prefix'=>'client','as'=>'client.'],function (){
         Route::get('logout',[\App\Http\Controllers\api\auth\indexController::class,'logout'])->name('logout');
     });
 });
+
+Route::group(['prefix'=>'home','as'=>'home.','middleware'=>'auth:api_client'],function (){
+    Route::get('',[\App\Http\Controllers\api\home\indexController::class,'index'])->name('index');
+});
+
+Route::group(['prefix'=>'video','as'=>'video.','middleware'=>'auth:api_client'],function (){
+    Route::post('',[\App\Http\Controllers\api\video\indexController::class,'index'])->name('index');
+});
