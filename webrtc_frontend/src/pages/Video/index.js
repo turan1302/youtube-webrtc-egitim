@@ -8,6 +8,7 @@ import RestClient from "../../RestAPI/RestClient";
 import AppUrl from "../../RestAPI/AppUrl";
 import Notification from "../../RestAPI/Notification";
 import { Peer } from "peerjs";
+import {Helmet} from "react-helmet";
 
 const HOST = "127.0.0.1";
 const PORT = 4444;
@@ -105,6 +106,10 @@ class Video extends Component {
 
         return (
             <>
+                <Helmet>
+                    <title>Görüntülü Konuşma: {params.conn}</title>
+                </Helmet>
+
                 <AuthLayout>
                     <Header/>
 

@@ -7,6 +7,7 @@ import withRouter from "../../withRouter";
 import Notification from "../../RestAPI/Notification";
 import RestClient from "../../RestAPI/RestClient";
 import AppUrl from "../../RestAPI/AppUrl";
+import {Helmet} from "react-helmet";
 
 class Register extends Component {
 
@@ -48,6 +49,10 @@ class Register extends Component {
     render() {
         return (
             <>
+                <Helmet>
+                    <title>Kayıt Ol</title>
+                </Helmet>
+
                 <Header/>
 
                 <Container>

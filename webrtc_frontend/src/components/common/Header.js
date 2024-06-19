@@ -55,7 +55,7 @@ class Header extends Component {
         return (
             <>
                 <Navbar bg="dark" variant="dark">
-                    <Navbar.Brand as={Link} to={"/"}>webRTC</Navbar.Brand>
+                    <Navbar.Brand as={Link} to={"/"}>WebRTC</Navbar.Brand>
                     <Nav className="mr-auto">
 
                         {(!isLoggedIn) ? (

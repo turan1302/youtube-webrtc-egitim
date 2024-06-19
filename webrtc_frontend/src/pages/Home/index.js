@@ -8,6 +8,8 @@ import RestClient from "../../RestAPI/RestClient";
 import AppUrl from "../../RestAPI/AppUrl";
 import Notification from "../../RestAPI/Notification";
 import {Link} from "react-router-dom";
+import {Helmet} from "react-helmet";
+import { CircleSpinner } from "react-spinners-kit";
 
 class Home extends Component {
 
@@ -65,13 +67,17 @@ class Home extends Component {
         if (isLoading===true){
             return (
                 <div className={"d-flex justify-content-center align-items-center vh-100"}>
-                    Yükleniyor...
+                    <CircleSpinner size={30} color="#686769" loading={isLoading} />
                 </div>
             )
         }
 
         return (
             <>
+                <Helmet>
+                    <title>WebRTC</title>
+                </Helmet>
+
                 <AuthLayout>
                     <Header/>
 
