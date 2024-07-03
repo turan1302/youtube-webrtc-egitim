@@ -8,6 +8,8 @@ class AuthLayout extends Component{
 
     constructor(props) {
         super(props);
+
+        this.isLoggedIn();
     }
 
     isLoggedIn = async ()=>{
